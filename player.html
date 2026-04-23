@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎧 سورة - تلاوات الدكتور سعيد راضي | مشغل احترافي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Tahoma', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(ellipse at 20% 30%, #0a0f2a, #020617);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatOrb 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -40px) scale(1.2); }
+        }
+
+        .bg-orb:nth-child(1) {
+            width: 350px;
+            height: 350px;
+            background: #22c55e;
+            top: -120px;
+            right: -80px;
+            animation-duration: 18s;
+        }
+
+        .bg-orb:nth-child(2) {
+            width: 280px;
+            height: 280px;
+            background: #3b82f6;
+            bottom: 10%;
+            left: -100px;
+            animation-duration: 22s;
+            animation-delay: -5s;
+        }
+
+        .bg-orb:nth-child(3) {
+            width: 450px;
+            height: 450px;
+            background: #f59e0b;
+            bottom: -150px;
+            right: -120px;
+            animation-duration: 30s;
+            opacity: 0.2;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1100;
+            cursor: pointer;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: #22c55e;
+            border-color: #22c55e;
+            transform: translateX(-4px);
+        }
+
+        .back-btn:active {
+            transform: scale(0.96);
+        }
+
+        .player-card {
+            position: relative;
+            z-index: 20;
+            background: rgba(12, 18, 34, 0.65);
+            backdrop-filter: blur(28px);
+            border-radius: 72px;
+            padding: 36px 28px 44px;
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            margin-bottom: 100px;
+        }
+
+        .cover {
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 24px;
+            border: 4px solid #22c55e;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4), 0 0 0 6px rgba(34, 197, 94, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .cover.rotating {
+            animation: vinylSpin 24s linear infinite;
+        }
+
+        @keyframes vinylSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff, #cbd5e1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .loading-badge {
+            font-size: 13px;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.15);
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 30px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .wave {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 6px;
+            height: 60px;
+            margin: 20px 0 10px;
+        }
+
+        .wave span {
+            width: 6px;
+            background: linear-gradient(180deg, #4ade80, #22c55e);
+            border-radius: 10px;
+            transition: height 0.08s ease;
+        }
+
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+            width: 92%;
+            margin: 12px auto 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .progress-container {
+            width: 92%;
+            height: 8px;
+            background: #1e293b;
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #a3e635);
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin: 20px 0 20px;
+        }
+
+        .controls button {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        .controls button:active {
+            transform: scale(0.88);
+            background: #22c55e;
+            color: #0f172a;
+        }
+
+        .play-btn {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #22c55e, #15803d);
+            border: none;
+            margin: 8px auto 12px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.5);
+            transition: all 0.2s;
+        }
+
+        .play-btn:active {
+            transform: scale(0.94);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 18px 0 18px 32px;
+            border-color: transparent transparent transparent #0f172a;
+        }
+
+        .pause-icon {
+            width: 32px;
+            height: 32px;
+            position: relative;
+        }
+
+        .pause-icon::before,
+        .pause-icon::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 100%;
+            background: #0f172a;
+            top: 0;
+            border-radius: 4px;
+        }
+
+        .pause-icon::before {
+            left: 0;
+        }
+
+        .pause-icon::after {
+            right: 0;
+        }
+
+        .volume-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .volume-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .volume-bar-container {
+            width: 88%;
+            height: 6px;
+            background: #1e293b;
+            border-radius: 10px;
+            margin: 0 auto;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .volume-bar-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #4ade80);
+            border-radius: 10px;
+        }
+
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 14px;
+        }
+
+        .volume-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .volume-btn:active {
+            background: #22c55e;
+            color: black;
+            transform: scale(0.92);
+        }
+
+        .volume-percent {
+            font-size: 13px;
+            font-weight: bold;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+            padding: 5px 14px;
+            border-radius: 40px;
+            min-width: 60px;
+        }
+
+        .bottom-actions {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            z-index: 200;
+            padding: 12px 28px;
+            background: rgba(8, 12, 25, 0.75);
+            backdrop-filter: blur(24px);
+            border-radius: 100px;
+            border: 1px solid rgba(34, 197, 94, 0.35);
+        }
+
+        .action-btn {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+        }
+
+        .action-btn:active {
+            transform: scale(0.88);
+        }
+
+        .bookmark-save-btn {
+            background: linear-gradient(145deg, #2563eb, #1e40af);
+            color: white;
+        }
+
+        .bookmark-list-btn {
+            background: linear-gradient(145deg, #f59e0b, #b45309);
+            color: white;
+        }
+
+        .playlist-btn {
+            background: linear-gradient(145deg, #22c55e, #166534);
+            color: white;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 130px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #22c55e;
+            color: #0f172a;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 2100;
+            opacity: 0;
+            transition: 0.25s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .bookmark-panel, .playlist-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(145deg, #0a0f1f, #030617);
+            backdrop-filter: blur(40px);
+            border-radius: 40px 40px 0 0;
+            max-height: 78vh;
+            transform: translateY(100%);
+            transition: transform 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bookmark-panel.show, .playlist-panel.show {
+            transform: translateY(0);
+        }
+
+        .bookmark-panel { border-top: 3px solid #fbbf24; }
+        .playlist-panel { border-top: 3px solid #4ade80; }
+
+        .bookmark-header, .playlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 28px;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .bookmark-header { background: rgba(251, 191, 36, 0.15); border-bottom: 1px solid rgba(251, 191, 36, 0.4); }
+        .playlist-header { background: rgba(74, 222, 128, 0.12); border-bottom: 1px solid rgba(74, 222, 128, 0.4); }
+
+        .bookmark-header h3 { color: #fbbf24; display: flex; align-items: center; gap: 14px; font-size: 22px; }
+        .playlist-header h3 { color: #4ade80; display: flex; align-items: center; gap: 12px; font-size: 22px; }
+
+        .close-bookmark, .close-playlist {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .close-bookmark:active, .close-playlist:active { background: #ef4444; transform: scale(0.9); }
+
+        .bookmark-items-container, .playlist-items-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+        }
+
+        .bookmark-card {
+            background: linear-gradient(115deg, rgba(251, 191, 36, 0.12), rgba(0, 0, 0, 0.6));
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            border-radius: 32px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .bookmark-time {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fde047;
+            font-family: monospace;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.4);
+            padding: 6px 14px;
+            border-radius: 40px;
+            width: fit-content;
+        }
+
+        .playlist-search {
+            padding: 14px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .playlist-search input {
+            width: 100%;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            text-align: right;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 22px;
+            margin: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.2s;
+        }
+
+        .playlist-item.active {
+            background: linear-gradient(115deg, rgba(74, 222, 128, 0.35), rgba(74, 222, 128, 0.1));
+            border: 1px solid #4ade80;
+        }
+
+        .playlist-item-number {
+            width: 48px;
+            height: 48px;
+            background: rgba(74, 222, 128, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #86efac;
+            font-size: 18px;
+        }
+
+        .playlist-item-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #f8fafc;
+        }
+
+        @media (max-width: 550px) {
+            .cover { width: 160px; height: 160px; }
+            .title { font-size: 22px; }
+            .controls button { width: 48px; height: 48px; font-size: 20px; }
+            .play-btn { width: 78px; height: 78px; }
+            .action-btn { width: 54px; height: 54px; font-size: 24px; }
+            .bottom-actions { gap: 20px; padding: 8px 20px; bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+
+    <div class="back-btn" id="backBtn">
+        <i class="fas fa-arrow-right"></i> 
+        <span>رجوع</span>
+    </div>
+
+    <div class="player-card">
+        <img src="icon-192.png" class="cover" id="coverImg" alt="cover">
+        <div class="title" id="surahTitle">🎧 التلاوات</div>
+        <div class="loading-badge" id="loadingBadge">⏳ جاري التحميل...</div>
+
+        <div class="wave" id="wave">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="time-row">
+            <span id="currentTime">0:00</span>
+            <span id="totalDuration">0:00</span>
+        </div>
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn" title="السورة السابقة"><i class="fas fa-backward-step"></i></button>
+            <button id="seekBackBtn" title="رجوع 10 ثوان"><i class="fas fa-rotate-left"></i></button>
+            <button id="seekForwardBtn" title="تقدم 10 ثوان"><i class="fas fa-rotate-right"></i></button>
+            <button id="nextBtn" title="السورة التالية"><i class="fas fa-forward-step"></i></button>
+        </div>
+
+        <button class="play-btn" id="playBtn">
+            <span id="playIcon" class="play-icon"></span>
+        </button>
+
+        <div class="volume-section">
+            <div class="volume-label">
+                <i class="fas fa-volume-down"></i>
+                <span>التحكم بالصوت</span>
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <div class="volume-bar-container" id="volumeBarContainer">
+                <div class="volume-bar-fill" id="volumeBarFill"></div>
+            </div>
+            <div class="volume-controls">
+                <button class="volume-btn" id="volumeDownBtn"><i class="fas fa-minus"></i></button>
+                <span class="volume-percent" id="volumePercent">100%</span>
+                <button class="volume-btn" id="volumeUpBtn"><i class="fas fa-plus"></i></button>
+                <button class="volume-btn" id="volumeMuteBtn"><i class="fas fa-volume-up"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-actions">
+        <button class="action-btn bookmark-save-btn" id="bookmarkSaveBtn" title="حفظ هذه الدقيقة كمفضلة">
+            <i class="fas fa-plus-circle"></i>
+        </button>
+        <button class="action-btn bookmark-list-btn" id="bookmarkListBtn" title="عرض المفضلات">
+            <i class="fas fa-bookmark"></i>
+        </button>
+        <button class="action-btn playlist-btn" id="playlistBtn" title="قائمة السور">
+            <i class="fas fa-list-ul"></i>
+        </button>
+    </div>
+
+    <div id="bookmarkPanel" class="bookmark-panel">
+        <div class="bookmark-header">
+            <h3><i class="fas fa-heart"></i> مفضلاتي <span id="bookmarkCount">0</span></h3>
+            <button class="close-bookmark" id="closeBookmarkBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="bookmark-items-container">
+            <div id="bookmarkList"></div>
+        </div>
+    </div>
+
+    <div id="playlistPanel" class="playlist-panel">
+        <div class="playlist-header">
+            <h3><i class="fas fa-quran"></i> فهرس السور <span id="playlistCount">114</span></h3>
+            <button class="close-playlist" id="closePlaylistBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="playlist-search">
+            <input type="text" id="playlistSearch" placeholder="🔍 ابحث عن سورة...">
+        </div>
+        <div class="playlist-items-container">
+            <div id="playlistItems"></div>
+        </div>
+        <div class="playlist-footer">
+            <button id="playlistCloseBtn" style="background:rgba(255,255,255,0.1); border:none; padding:14px; border-radius:50px; color:white; width:90%; margin:12px auto; display:block;"><i class="fas fa-chevron-down"></i> إغلاق القائمة</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <audio id="audio" preload="auto"></audio>
+
+    <script>
+        // قائمة السور كاملة
+        const surahs = [
+            "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس",
+            "هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+            "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+            "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
+            "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
+            "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+            "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
+            "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
+            "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+            "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
+            "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر",
+            "المسد","الإخلاص","الفلق","الناس"
+        ];
+
+        // روابط Cloudinary
+        const cloudinaryUrls = {
+            1: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871346/001_axujdm.mp3",
+            2: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872477/002_ytbnwo.mp3",
+            3: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872329/003_ouhyai.mp3",
+            4: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872477/004_u8wkpc.mp3",
+            5: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871628/005_cvvzyx.mp3",
+            6: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871649/006_hdtgyx.mp3",
+            7: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872469/007_ptj4yc.mp3",
+            8: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871497/008_ekkwxc.mp3",
+            9: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872348/009_ff7cwy.mp3",
+            10: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871611/010_plr9qj.mp3",
+            11: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776870372/011_kckfqg.mp3",
+            12: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776870389/012_ipnsvh.mp3",
+            13: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869334/013_trzufm.mp3",
+            14: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869367/014_qwuibj.mp3",
+            15: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869271/015_nlb0hj.mp3",
+            16: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776870407/016_gna0ya.mp3",
+            17: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869439/017_a5dcxo.mp3",
+            18: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869426/018_is6v9r.mp3",
+            19: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869382/019_a8ansc.mp3",
+            20: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868473/020_gcbfei.mp3",
+            21: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868481/021_bgmcsp.mp3",
+            22: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868345/022_j9cjcw.mp3",
+            23: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868297/023_wjdwiu.mp3",
+            24: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868335/024_n5bjyn.mp3",
+            25: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868344/025_flrbbw.mp3",
+            26: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868376/026_u5q5xw.mp3",
+            27: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868369/027_hdgmip.mp3",
+            28: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868433/028_djw9io.mp3",
+            29: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868397/029_liefnm.mp3",
+            30: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867863/030_y0llyk.mp3",
+            31: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867847/031_cmmcwm.mp3",
+            32: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867842/032_ispar8.mp3",
+            33: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867912/033_zrs9jy.mp3",
+            34: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867925/034_brqjlh.mp3",
+            35: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867891/035_y8aw9s.mp3",
+            36: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867903/036_pkezb8.mp3",
+            37: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867925/037_tqmezf.mp3",
+            38: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867910/038_zbrzma.mp3",
+            39: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867937/039_diwazt.mp3",
+            40: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867407/040_n2ovzb.mp3",
+            41: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867356/041_hunwr5.mp3",
+            42: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867386/042_ochh8g.mp3",
+            43: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867370/043_zelc8u.mp3",
+            44: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867340/044_uq35ez.mp3",
+            45: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867326/045_bc3j1x.mp3",
+            46: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867392/046_gqftie.mp3",
+            47: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867368/047_zleypk.mp3",
+            48: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867385/048_g9klxu.mp3",
+            49: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867341/049_m043we.mp3",
+            50: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866270/050_i3abba.mp3",
+            51: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866299/051_afxffi.mp3",
+            52: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866228/052_sw47p2.mp3",
+            53: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866284/053_nao7jm.mp3",
+            54: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866220/054_bccp7b.mp3",
+            55: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866327/055_lrnyme.mp3",
+            56: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866336/056_ba6olg.mp3",
+            57: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866360/057_eyl7vp.mp3",
+            58: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866336/058_fhfu77.mp3",
+            59: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866361/059_ncydkq.mp3",
+            60: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863072/060_ctffg4.mp3",
+            61: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862998/061_bza8s9.mp3",
+            62: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863039/062_zrx3tz.mp3",
+            63: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863048/063_lefk0j.mp3",
+            64: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863081/064_m7dvnp.mp3",
+            65: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863076/065_jlpdze.mp3",
+            66: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863070/066_mvw7iq.mp3",
+            67: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863118/067_dbsx9t.mp3",
+            68: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863125/068_flcxmd.mp3",
+            69: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863100/069_fkoqib.mp3",
+            70: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862175/070_dqtesx.mp3",
+            71: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862193/071_tmmhuk.mp3",
+            72: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862171/072_o1slyr.mp3",
+            73: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862187/073_b9edpj.mp3",
+            74: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862192/074_b7dkln.mp3",
+            75: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862163/075_czqyyq.mp3",
+            76: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862190/076_kf3mly.mp3",
+            77: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862248/077_huhffh.mp3",
+            78: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862246/078_vpntcq.mp3",
+            79: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862239/079_di2fdp.mp3",
+            80: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861685/080_fheapf.mp3",
+            81: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861639/081_pomldf.mp3",
+            82: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861645/082_jnonef.mp3",
+            83: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861673/083_t1ltrp.mp3",
+            84: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861635/084_lljb7s.mp3",
+            85: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861655/085_bwg3wb.mp3",
+            86: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861659/086_zbwxke.mp3",
+            87: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861657/087_jzy2xi.mp3",
+            88: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861675/088_pcqvbi.mp3",
+            89: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861692/089_wjur3e.mp3",
+            90: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860483/090_lx2qzu.mp3",
+            91: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860474/091_wceecs.mp3",
+            92: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860481/092_qdmavf.mp3",
+            93: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860481/093_zatoeh.mp3",
+            94: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860486/094_ukl3yg.mp3",
+            95: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860480/095_cfohv3.mp3",
+            96: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860488/096_kczott.mp3",
+            97: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860487/097_ihh1er.mp3",
+            98: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860508/098_ffhnjl.mp3",
+            99: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860468/099_tzd5tt.mp3",
+            100: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816278/100_erc2yd.mp3",
+            101: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816281/101_hxqzs8.mp3",
+            102: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816280/102_lil6iz.mp3",
+            103: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816273/103_h3swri.mp3",
+            104: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816278/104_le34pc.mp3",
+            105: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816279/105_oagsw9.mp3",
+            106: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816280/106_ln81yd.mp3",
+            107: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816286/107_mmotvj.mp3",
+            108: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816283/108_zl0379.mp3",
+            109: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816275/109_qiyiwk.mp3",
+            110: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816274/110_coumzq.mp3",
+            111: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816283/111_kc6oay.mp3",
+            112: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816283/112_lmplot.mp3",
+            113: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816287/113_hlxft3.mp3",
+            114: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816288/114_kgtomj.mp3"
+        };
+
+        function getSurahUrlByNumber(num) {
+            return cloudinaryUrls[num] || null;
+        }
+
+        // استعادة بيانات السورة
+        let currentSurahIndex = parseInt(localStorage.getItem("selectedSurahIndex")) || 0;
+        let currentSurahName = localStorage.getItem("selectedSurahName") || surahs[currentSurahIndex];
+        let currentSurahUrl = localStorage.getItem("selectedSurahUrl");
+        let currentSurahNumber = parseInt(localStorage.getItem("selectedSurahNumber")) || (currentSurahIndex + 1);
+
+        localStorage.removeItem("selectedSurahIndex");
+        localStorage.removeItem("selectedSurahName");
+        localStorage.removeItem("selectedSurahUrl");
+        localStorage.removeItem("selectedSurahNumber");
+
+        if (!currentSurahUrl && cloudinaryUrls[currentSurahNumber]) {
+            currentSurahUrl = cloudinaryUrls[currentSurahNumber];
+        }
+
+        // عناصر DOM
+        const audio = document.getElementById("audio");
+        const playBtn = document.getElementById("playBtn");
+        const playIcon = document.getElementById("playIcon");
+        const surahTitleSpan = document.getElementById("surahTitle");
+        const currentTimeSpan = document.getElementById("currentTime");
+        const totalDurationSpan = document.getElementById("totalDuration");
+        const progressFill = document.getElementById("progressFill");
+        const progressContainer = document.getElementById("progressContainer");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const seekBackBtn = document.getElementById("seekBackBtn");
+        const seekForwardBtn = document.getElementById("seekForwardBtn");
+        const loadingBadge = document.getElementById("loadingBadge");
+        const waveSpans = document.querySelectorAll("#wave span");
+        const coverImg = document.getElementById("coverImg");
+        const backBtn = document.getElementById("backBtn");
+        const toastEl = document.getElementById("toast");
+        const volumeBarContainer = document.getElementById("volumeBarContainer");
+        const volumeBarFill = document.getElementById("volumeBarFill");
+        const volumePercent = document.getElementById("volumePercent");
+        const volumeDownBtn = document.getElementById("volumeDownBtn");
+        const volumeUpBtn = document.getElementById("volumeUpBtn");
+        const volumeMuteBtn = document.getElementById("volumeMuteBtn");
+
+        // متغيرات
+        let isPlaying = false;
+        let isTimeRestored = false;
+        let waveInterval = null;
+
+        // دوال مساعدة
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function showToast(msg) {
+            toastEl.textContent = msg;
+            toastEl.classList.add("show");
+            setTimeout(() => toastEl.classList.remove("show"), 2000);
+        }
+
+        function startWaveAnimation() {
+            if (waveInterval) clearInterval(waveInterval);
+            waveInterval = setInterval(() => {
+                if (isPlaying) {
+                    waveSpans.forEach(span => {
+                        const h = Math.floor(Math.random() * 35) + 10;
+                        span.style.height = `${h}px`;
+                    });
+                } else {
+                    waveSpans.forEach(span => span.style.height = "8px");
+                }
+            }, 120);
+        }
+
+        function updatePlayPauseUI() {
+            if (isPlaying) {
+                playIcon.className = "pause-icon";
+                coverImg.classList.add("rotating");
+            } else {
+                playIcon.className = "play-icon";
+                coverImg.classList.remove("rotating");
+            }
+        }
+
+        // ========== الوظيفة الأساسية: تشغيل السورة مباشرة (بدون Blob) ==========
+        function loadSurah() {
+            if (!currentSurahUrl) {
+                surahTitleSpan.textContent = `⚠️ سورة ${currentSurahName}`;
+                loadingBadge.style.display = "block";
+                loadingBadge.textContent = "❌ الرابط غير متوفر";
+                showToast("⚠ رابط السورة غير موجود");
+                return;
+            }
+
+            loadingBadge.style.display = "block";
+            loadingBadge.textContent = "⏳ جاري التحميل...";
+            surahTitleSpan.textContent = `🎧 سورة ${currentSurahName}`;
+
+            // إيقاف التشغيل الحالي
+            audio.pause();
+            isPlaying = false;
+
+            // تشغيل الملف مباشرة من الرابط (دون fetch أو Blob)
+            audio.src = currentSurahUrl;
+            audio.load();
+
+            // حفظ في localStorage للتشغيل التلقائي لاحقاً
+            localStorage.setItem("audioSrc", currentSurahUrl);
+            localStorage.setItem("surahIndex", currentSurahIndex);
+
+            isTimeRestored = false;
+            displayBookmarks();
+
+            let savedTime = localStorage.getItem(`surah_${currentSurahIndex}_time`);
+
+            // عند تحميل البيانات الوصفية
+            audio.onloadedmetadata = () => {
+                if (!isTimeRestored && savedTime && parseFloat(savedTime) > 0 && audio.duration > parseFloat(savedTime)) {
+                    audio.currentTime = parseFloat(savedTime);
+                    isTimeRestored = true;
+                }
+                totalDurationSpan.textContent = formatTime(audio.duration);
+                loadingBadge.style.display = "none";
+
+                // محاولة التشغيل التلقائي
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updatePlayPauseUI();
+                    startWaveAnimation();
+                }).catch(e => console.log("Auto-play prevented:", e));
+            };
+
+            audio.onerror = (e) => {
+                console.error("Audio error:", e);
+                loadingBadge.style.display = "block";
+                loadingBadge.textContent = "❌ خطأ في تحميل الصوت";
+                showToast("⚠ حدث خطأ في تحميل السورة");
+            };
+        }
+
+        // تغيير السورة
+        function changeSurah(newIndex) {
+            if (newIndex < 0 || newIndex >= surahs.length) return;
+            currentSurahIndex = newIndex;
+            currentSurahName = surahs[currentSurahIndex];
+            currentSurahNumber = currentSurahIndex + 1;
+            currentSurahUrl = getSurahUrlByNumber(currentSurahNumber);
+            
+            if (!currentSurahUrl) {
+                showToast(`⚠️ سورة ${currentSurahName} غير متوفرة حالياً`);
+                return;
+            }
+            
+            loadSurah();
+        }
+
+        // حفظ الوقت الحالي
+        function saveCurrentTime() {
+            if (audio.duration && !isNaN(audio.currentTime)) {
+                localStorage.setItem(`surah_${currentSurahIndex}_time`, audio.currentTime);
+            }
+        }
+
+        // ========== المفضلات ==========
+        function getBookmarks() {
+            const saved = localStorage.getItem(`bookmarks_surah_${currentSurahIndex}`);
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function saveBookmarks(bookmarks) {
+            localStorage.setItem(`bookmarks_surah_${currentSurahIndex}`, JSON.stringify(bookmarks));
+            displayBookmarks();
+            document.getElementById("bookmarkCount").innerText = bookmarks.length;
+        }
+
+        function addBookmark() {
+            const currentTime = audio.currentTime;
+            if (!currentTime || isNaN(currentTime)) return;
+            const bookmarks = getBookmarks();
+            if (!bookmarks.find(b => Math.abs(b.time - currentTime) < 1)) {
+                bookmarks.push({ time: currentTime, comment: `⏱️ ${formatTime(currentTime)}` });
+                bookmarks.sort((a, b) => a.time - b.time);
+                saveBookmarks(bookmarks);
+                showToast("✅ تمت إضافة العلامة");
+            } else {
+                showToast("⚠️ هذه العلامة موجودة مسبقاً");
+            }
+        }
+
+        function deleteBookmark(time) {
+            let bookmarks = getBookmarks();
+            bookmarks = bookmarks.filter(b => b.time !== time);
+            saveBookmarks(bookmarks);
+            showToast("🗑️ تم حذف العلامة");
+        }
+
+        function goToBookmark(time) {
+            audio.currentTime = time;
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updatePlayPauseUI();
+                    startWaveAnimation();
+                }).catch(e => console.log(e));
+            }
+            showToast(`🎯 الانتقال إلى ${formatTime(time)}`);
+        }
+
+        function displayBookmarks() {
+            const container = document.getElementById("bookmarkList");
+            if (!container) return;
+            const bookmarks = getBookmarks();
+            document.getElementById("bookmarkCount").innerText = bookmarks.length;
+            if (bookmarks.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:40px; color:#94a3b8;">📌 لا توجد علامات</div>`;
+                return;
+            }
+            container.innerHTML = bookmarks.map(b => `
+                <div class="bookmark-card">
+                    <div class="bookmark-time" onclick="goToBookmark(${b.time})">
+                        <i class="fas fa-play-circle"></i> ${formatTime(b.time)}
+                    </div>
+                    <div style="display:flex; justify-content:flex-end; margin-top:12px;">
+                        <button onclick="deleteBookmark(${b.time})" style="background:rgba(239,68,68,0.8); border:none; padding:8px 16px; border-radius:30px; color:white;">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        // ========== قائمة السور ==========
+        function renderPlaylist(filter = "") {
+            const container = document.getElementById("playlistItems");
+            if (!container) return;
+            let filtered = surahs.map((name, idx) => ({ idx, name, num: idx+1 }))
+                .filter(item => item.name.includes(filter));
+            document.getElementById("playlistCount").innerText = filtered.length;
+            container.innerHTML = filtered.map(item => `
+                <div class="playlist-item ${item.idx === currentSurahIndex ? 'active' : ''}" data-index="${item.idx}">
+                    <div class="playlist-item-number">${item.num}</div>
+                    <div class="playlist-item-name">${item.name}</div>
+                    <i class="fas fa-headphones" style="color:#4ade80;"></i>
+                </div>
+            `).join("");
+            document.querySelectorAll(".playlist-item").forEach(el => {
+                el.addEventListener("click", () => {
+                    const idx = parseInt(el.dataset.index);
+                    if (!isNaN(idx) && idx !== currentSurahIndex) {
+                        changeSurah(idx);
+                        document.getElementById("playlistPanel").classList.remove("show");
+                    }
+                });
+            });
+        }
+
+        // ========== أحداث الصوت ==========
+        audio.addEventListener("timeupdate", () => {
+            if (audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = `${percent}%`;
+                currentTimeSpan.textContent = formatTime(audio.currentTime);
+            }
+        });
+
+        audio.addEventListener("ended", () => {
+            isPlaying = false;
+            updatePlayPauseUI();
+            if (waveInterval) clearInterval(waveInterval);
+            waveSpans.forEach(span => span.style.height = "8px");
+            saveCurrentTime();
+        });
+
+        audio.addEventListener("play", () => {
+            isPlaying = true;
+            updatePlayPauseUI();
+            startWaveAnimation();
+        });
+
+        audio.addEventListener("pause", () => {
+            isPlaying = false;
+            updatePlayPauseUI();
+            saveCurrentTime();
+        });
+
+        progressContainer.addEventListener("click", (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            if (audio.duration) {
+                audio.currentTime = percent * audio.duration;
+            }
+        });
+
+        // ========== التحكم بالصوت ==========
+        function setVolume(value) {
+            let vol = Math.min(1, Math.max(0, value));
+            audio.volume = vol;
+            volumeBarFill.style.width = `${vol * 100}%`;
+            volumePercent.innerText = `${Math.round(vol * 100)}%`;
+            if (vol === 0) volumeMuteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            else volumeMuteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            localStorage.setItem("playerVolume", vol);
+        }
+
+        volumeBarContainer.addEventListener("click", (e) => {
+            const rect = volumeBarContainer.getBoundingClientRect();
+            let percent = (e.clientX - rect.left) / rect.width;
+            setVolume(percent);
+        });
+
+        volumeDownBtn.addEventListener("click", () => setVolume(audio.volume - 0.1));
+        volumeUpBtn.addEventListener("click", () => setVolume(audio.volume + 0.1));
+        volumeMuteBtn.addEventListener("click", () => setVolume(audio.volume === 0 ? 1 : 0));
+
+        let savedVol = localStorage.getItem("playerVolume");
+        if (savedVol !== null) setVolume(parseFloat(savedVol));
+        else setVolume(1);
+
+        // ========== ربط الأزرار ==========
+        playBtn.onclick = () => {
+            if (audio.src) {
+                if (isPlaying) audio.pause();
+                else audio.play();
+            } else loadSurah();
+        };
+        prevBtn.onclick = () => changeSurah(currentSurahIndex - 1);
+        nextBtn.onclick = () => changeSurah(currentSurahIndex + 1);
+        seekBackBtn.onclick = () => audio.currentTime = Math.max(0, audio.currentTime - 10);
+        seekForwardBtn.onclick = () => audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+        backBtn.onclick = () => window.location.href = "index.html";
+
+        // المفضلات
+        window.goToBookmark = goToBookmark;
+        window.deleteBookmark = deleteBookmark;
+        document.getElementById("bookmarkSaveBtn").onclick = addBookmark;
+        document.getElementById("bookmarkListBtn").onclick = () => {
+            displayBookmarks();
+            document.getElementById("bookmarkPanel").classList.add("show");
+        };
+        document.getElementById("closeBookmarkBtn").onclick = () => document.getElementById("bookmarkPanel").classList.remove("show");
+
+        // قائمة السور
+        document.getElementById("playlistBtn").onclick = () => {
+            renderPlaylist();
+            document.getElementById("playlistPanel").classList.add("show");
+        };
+        document.getElementById("closePlaylistBtn").onclick = () => document.getElementById("playlistPanel").classList.remove("show");
+        document.getElementById("playlistCloseBtn").onclick = () => document.getElementById("playlistPanel").classList.remove("show");
+        document.getElementById("playlistSearch").addEventListener("input", (e) => renderPlaylist(e.target.value));
+
+        // بدء التشغيل
+        startWaveAnimation();
+        loadSurah();
+    </script>
+</body>
+</html>

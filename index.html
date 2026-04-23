@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>📖 تلاوات الدكتور سعيد راضي - القرآن الكريم كاملاً</title>
+    <meta name="description" content="استمع إلى القرآن الكريم كاملاً بصوت الدكتور سعيد راضي. تلاوات عذبة بجودة عالية.">
+    <meta name="keywords" content="القرآن الكريم, تلاوات, الدكتور سعيد راضي, استماع القرآن">
+    <meta name="author" content="الدكتور سعيد راضي">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dr-said-rady-quran.great-site.net/">
+    <meta property="og:title" content="📖 تلاوات الدكتور سعيد راضي - القرآن الكريم كاملاً">
+    <meta property="og:description" content="استمع إلى القرآن الكريم بصوت الدكتور سعيد راضي">
+    <meta property="og:image" content="https://dr-said-rady-quran.great-site.net/icon-192.png">
+    <meta property="og:url" content="https://dr-said-rady-quran.great-site.net/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="تلاوات الدكتور سعيد راضي">
+    <meta name="twitter:description" content="القرآن الكريم كاملاً بصوت الدكتور سعيد راضي">
+    <meta name="twitter:image" content="https://dr-said-rady-quran.great-site.net/icon-192.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "تلاوات الدكتور سعيد راضي",
+        "description": "القرآن الكريم كاملاً بصوت الدكتور سعيد راضي",
+        "applicationCategory": "Multimedia",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="theme-color" content="#22c55e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="تلاوات سعيد راضي">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Tahoma', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: radial-gradient(ellipse at 30% 40%, #0a0f2a, #020617);
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 30px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+        }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+
+        .bg-orb:nth-child(1) {
+            width: 350px;
+            height: 350px;
+            background: #22c55e;
+            top: -100px;
+            right: -80px;
+        }
+
+        .bg-orb:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            background: #3b82f6;
+            bottom: 20%;
+            left: -80px;
+        }
+
+        .bg-orb:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: #f59e0b;
+            bottom: -150px;
+            right: -100px;
+            opacity: 0.1;
+        }
+
+        /* Install Banner - يظهر فقط عند الحاجة */
+        .install-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a2a3a, #0f172a);
+            backdrop-filter: blur(20px);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10001;
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .install-banner.show {
+            transform: translateY(0);
+        }
+
+        .install-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .install-banner-content i {
+            font-size: 28px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(34,197,94,0.3);
+        }
+
+        .install-banner-text h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+            color: #22c55e;
+        }
+
+        .install-banner-text p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .install-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .install-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 10px rgba(34,197,94,0.3);
+        }
+
+        .install-btn:active {
+            transform: scale(0.95);
+        }
+
+        .close-install {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-install:active {
+            transform: rotate(90deg) scale(0.9);
+            background: #ef4444;
+        }
+
+        /* Instructions Modal */
+        .install-instructions {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(12, 18, 34, 0.98);
+            backdrop-filter: blur(30px);
+            padding: 28px;
+            border-radius: 40px;
+            z-index: 10002;
+            width: 85%;
+            max-width: 340px;
+            text-align: center;
+            border: 1px solid #22c55e;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .install-instructions.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .install-instructions i {
+            font-size: 55px;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        .install-instructions h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .install-steps {
+            background: rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 18px;
+            margin: 18px 0;
+            text-align: right;
+        }
+
+        .install-steps div {
+            margin: 12px 0;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .install-steps i {
+            font-size: 18px;
+            width: 28px;
+            margin: 0;
+        }
+
+        .close-instructions {
+            background: #22c55e;
+            color: black;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-instructions:active {
+            transform: scale(0.97);
+        }
+
+        /* Header */
+        header {
+            padding: 40px 20px 35px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(34, 197, 94, 0.1));
+            border-bottom-left-radius: 45px;
+            border-bottom-right-radius: 45px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        header img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #22c55e;
+            margin-bottom: 18px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 0 6px rgba(34, 197, 94, 0.2);
+            transition: all 0.3s;
+        }
+
+        header h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #ffffff, #cbd5e1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 14px;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        /* Search */
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin: 25px auto;
+            padding: 0 18px;
+            position: relative;
+            z-index: 5;
+        }
+
+        #search {
+            width: 100%;
+            max-width: 520px;
+            padding: 15px 24px;
+            border: none;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+            text-align: right;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #search:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #22c55e;
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.3);
+            transform: scale(1.01);
+        }
+
+        #search::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+            gap: 16px;
+            padding: 20px;
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            padding: 18px 8px;
+            border-radius: 28px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s ease, background 0.2s ease;
+            opacity: 0;
+            transform: translateY(20px) translateZ(0);
+            animation: cardFadeIn 0.3s forwards;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(34,197,94,0.15), transparent);
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(34, 197, 94, 0.5);
+            background: rgba(34, 197, 94, 0.12);
+        }
+
+        .card:active {
+            transform: scale(0.97);
+            background: #22c55e;
+            color: #0f172a;
+        }
+
+        @keyframes cardFadeIn {
+            to { opacity: 1; transform: translateY(0) translateZ(0); }
+        }
+
+        .card { animation-delay: calc(0.01s * var(--i, 0)); }
+        
+        .loading-spinner {
+            text-align: center;
+            padding: 40px;
+            color: #22c55e;
+            font-size: 18px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                backdrop-filter: none;
+                background: rgba(255,255,255,0.08);
+            }
+            .search-box #search {
+                backdrop-filter: none;
+            }
+            header {
+                backdrop-filter: none;
+            }
+            .install-banner {
+                backdrop-filter: none;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .grid {
+                gap: 12px;
+                padding: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+            }
+            .card {
+                padding: 14px 5px;
+                font-size: 13px;
+            }
+            header h1 {
+                font-size: 22px;
+            }
+            header img {
+                width: 85px;
+                height: 85px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+
+    <!-- البانر العلوي الذي يظهر فقط عند الحاجة -->
+    <div id="installBanner" class="install-banner">
+        <div class="install-banner-content">
+            <i class="fas fa-download"></i>
+            <div class="install-banner-text">
+                <h4>📱 ثبّت التطبيق</h4>
+                <p>تجربة أسرع ووصول مباشر</p>
+            </div>
+        </div>
+        <div class="install-buttons">
+            <button id="installBtn" class="install-btn">تثبيت</button>
+            <button id="closeInstallBtn" class="close-install"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <div id="installInstructions" class="install-instructions">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>طريقة التثبيت</h3>
+        <div class="install-steps">
+            <div><i class="fab fa-android"></i> <strong>أندرويد:</strong> ⋮ → <span style="color:#22c55e">"تثبيت التطبيق"</span></div>
+            <div><i class="fab fa-apple"></i> <strong>آيفون:</strong> مشاركة ↑ → <span style="color:#22c55e">"أضف إلى الشاشة الرئيسية"</span></div>
+            <div><i class="fas fa-globe"></i> <strong>كمبيوتر:</strong> أيقونة التثبيت 🔽</div>
+        </div>
+        <button class="close-instructions" id="closeInstructionsBtn">فهمت ✓</button>
+    </div>
+
+    <header>
+        <img src="icon-192.png" alt="Logo">
+        <h1>📖 تلاوات الدكتور سعيد راضي</h1>
+        <p>القرآن الكريم كامل بجودة عالية | استمتع بتلاوات خاشعة</p>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="search" placeholder="🔍 ابحث عن سورة...">
+    </div>
+
+    <div class="grid" id="surah-list"></div>
+    <div id="loadingSpinner" class="loading-spinner hidden">⏳ جاري تحميل السور...</div>
+
+    <script>
+        const surahs = [
+            "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس",
+            "هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+            "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+            "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
+            "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
+            "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+            "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
+            "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
+            "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+            "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
+            "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر",
+            "المسد","الإخلاص","الفلق","الناس"
+        ];
+
+        const cloudinaryUrls = {
+            1: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871346/001_axujdm.mp3",
+            2: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872477/002_ytbnwo.mp3",
+            3: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872329/003_ouhyai.mp3",
+            4: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872477/004_u8wkpc.mp3",
+            5: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871628/005_cvvzyx.mp3",
+            6: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871649/006_hdtgyx.mp3",
+            7: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872469/007_ptj4yc.mp3",
+            8: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871497/008_ekkwxc.mp3",
+            9: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776872348/009_ff7cwy.mp3",
+            10: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776871611/010_plr9qj.mp3",
+            11: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776870372/011_kckfqg.mp3",
+            12: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776870389/012_ipnsvh.mp3",
+            13: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869334/013_trzufm.mp3",
+            14: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869367/014_qwuibj.mp3",
+            15: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869271/015_nlb0hj.mp3",
+            16: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776870407/016_gna0ya.mp3",
+            17: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869439/017_a5dcxo.mp3",
+            18: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869426/018_is6v9r.mp3",
+            19: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776869382/019_a8ansc.mp3",
+            20: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868473/020_gcbfei.mp3",
+            21: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868481/021_bgmcsp.mp3",
+            22: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868345/022_j9cjcw.mp3",
+            23: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868297/023_wjdwiu.mp3",
+            24: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868335/024_n5bjyn.mp3",
+            25: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868344/025_flrbbw.mp3",
+            26: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868376/026_u5q5xw.mp3",
+            27: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868369/027_hdgmip.mp3",
+            28: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868433/028_djw9io.mp3",
+            29: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776868397/029_liefnm.mp3",
+            30: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867863/030_y0llyk.mp3",
+            31: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867847/031_cmmcwm.mp3",
+            32: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867842/032_ispar8.mp3",
+            33: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867912/033_zrs9jy.mp3",
+            34: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867925/034_brqjlh.mp3",
+            35: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867891/035_y8aw9s.mp3",
+            36: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867903/036_pkezb8.mp3",
+            37: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867925/037_tqmezf.mp3",
+            38: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867910/038_zbrzma.mp3",
+            39: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867937/039_diwazt.mp3",
+            40: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867407/040_n2ovzb.mp3",
+            41: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867356/041_hunwr5.mp3",
+            42: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867386/042_ochh8g.mp3",
+            43: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867370/043_zelc8u.mp3",
+            44: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867340/044_uq35ez.mp3",
+            45: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867326/045_bc3j1x.mp3",
+            46: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867392/046_gqftie.mp3",
+            47: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867368/047_zleypk.mp3",
+            48: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867385/048_g9klxu.mp3",
+            49: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776867341/049_m043we.mp3",
+            50: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866270/050_i3abba.mp3",
+            51: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866299/051_afxffi.mp3",
+            52: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866228/052_sw47p2.mp3",
+            53: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866284/053_nao7jm.mp3",
+            54: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866220/054_bccp7b.mp3",
+            55: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866327/055_lrnyme.mp3",
+            56: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866336/056_ba6olg.mp3",
+            57: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866360/057_eyl7vp.mp3",
+            58: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866336/058_fhfu77.mp3",
+            59: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776866361/059_ncydkq.mp3",
+            60: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863072/060_ctffg4.mp3",
+            61: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862998/061_bza8s9.mp3",
+            62: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863039/062_zrx3tz.mp3",
+            63: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863048/063_lefk0j.mp3",
+            64: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863081/064_m7dvnp.mp3",
+            65: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863076/065_jlpdze.mp3",
+            66: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863070/066_mvw7iq.mp3",
+            67: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863118/067_dbsx9t.mp3",
+            68: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863125/068_flcxmd.mp3",
+            69: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776863100/069_fkoqib.mp3",
+            70: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862175/070_dqtesx.mp3",
+            71: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862193/071_tmmhuk.mp3",
+            72: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862171/072_o1slyr.mp3",
+            73: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862187/073_b9edpj.mp3",
+            74: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862192/074_b7dkln.mp3",
+            75: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862163/075_czqyyq.mp3",
+            76: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862190/076_kf3mly.mp3",
+            77: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862248/077_huhffh.mp3",
+            78: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862246/078_vpntcq.mp3",
+            79: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776862239/079_di2fdp.mp3",
+            80: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861685/080_fheapf.mp3",
+            81: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861639/081_pomldf.mp3",
+            82: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861645/082_jnonef.mp3",
+            83: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861673/083_t1ltrp.mp3",
+            84: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861635/084_lljb7s.mp3",
+            85: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861655/085_bwg3wb.mp3",
+            86: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861659/086_zbwxke.mp3",
+            87: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861657/087_jzy2xi.mp3",
+            88: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861675/088_pcqvbi.mp3",
+            89: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776861692/089_wjur3e.mp3",
+            90: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860483/090_lx2qzu.mp3",
+            91: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860474/091_wceecs.mp3",
+            92: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860481/092_qdmavf.mp3",
+            93: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860481/093_zatoeh.mp3",
+            94: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860486/094_ukl3yg.mp3",
+            95: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860480/095_cfohv3.mp3",
+            96: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860488/096_kczott.mp3",
+            97: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860487/097_ihh1er.mp3",
+            98: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860508/098_ffhnjl.mp3",
+            99: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776860468/099_tzd5tt.mp3",
+            100: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816278/100_erc2yd.mp3",
+            101: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816281/101_hxqzs8.mp3",
+            102: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816280/102_lil6iz.mp3",
+            103: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816273/103_h3swri.mp3",
+            104: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816278/104_le34pc.mp3",
+            105: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816279/105_oagsw9.mp3",
+            106: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816280/106_ln81yd.mp3",
+            107: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816286/107_mmotvj.mp3",
+            108: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816283/108_zl0379.mp3",
+            109: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816275/109_qiyiwk.mp3",
+            110: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816274/110_coumzq.mp3",
+            111: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816283/111_kc6oay.mp3",
+            112: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816283/112_lmplot.mp3",
+            113: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816287/113_hlxft3.mp3",
+            114: "https://res.cloudinary.com/duuc1txpz/video/upload/v1776816288/114_kgtomj.mp3"
+        };
+
+        function getSurahUrl(surahNumber) {
+            return cloudinaryUrls[surahNumber] || null;
+        }
+
+        const listDiv = document.getElementById("surah-list");
+        const searchInput = document.getElementById("search");
+        const loadingSpinner = document.getElementById("loadingSpinner");
+
+        function displaySurahs(filter = "") {
+            listDiv.innerHTML = "";
+            loadingSpinner.classList.add("hidden");
+
+            const fragment = document.createDocumentFragment();
+            let visibleCount = 0;
+
+            for (let i = 0; i < surahs.length; i++) {
+                const name = surahs[i];
+                const surahNumber = i + 1;
+                const hasUrl = cloudinaryUrls[surahNumber] !== undefined;
+
+                if (filter === "" || name.includes(filter)) {
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.style.setProperty('--i', visibleCount % 50);
+                    card.textContent = `${surahNumber}. ${name}`;
+                    
+                    if (!hasUrl) {
+                        card.style.opacity = "0.7";
+                    }
+
+                    card.onclick = () => {
+                        const url = getSurahUrl(surahNumber);
+                        if (!url) {
+                            alert(`⚠️ سورة ${name} لم يتم رفعها على Cloudinary بعد.\nسيتم إضافتها قريبًا إن شاء الله.`);
+                            return;
+                        }
+                        localStorage.setItem("selectedSurahIndex", i);
+                        localStorage.setItem("selectedSurahName", name);
+                        localStorage.setItem("selectedSurahUrl", url);
+                        localStorage.setItem("selectedSurahNumber", surahNumber);
+                        window.location.href = "player.html";
+                    };
+                    
+                    fragment.appendChild(card);
+                    visibleCount++;
+                }
+            }
+            
+            listDiv.appendChild(fragment);
+        }
+
+        let searchTimeout;
+        searchInput.addEventListener("input", (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => displaySurahs(e.target.value), 200);
+        });
+
+        // ========== PWA التثبيت - يظهر البانر فقط عند الحاجة ==========
+        const installBannerEl = document.getElementById("installBanner");
+        const installBtnEl = document.getElementById("installBtn");
+        const closeInstallBtnEl = document.getElementById("closeInstallBtn");
+        const installInstructionsEl = document.getElementById("installInstructions");
+        const closeInstructionsBtnEl = document.getElementById("closeInstructionsBtn");
+        let deferredPrompt = null;
+
+        // التحقق إذا كان التطبيق مثبتًا مسبقًا
+        const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        
+        if (!isInstalled) {
+            // محاولة إظهار البانر بعد ثانية (في حالة عدم ظهور beforeinstallprompt)
+            setTimeout(() => {
+                if (installBannerEl && !installBannerEl.classList.contains("show")) {
+                    installBannerEl.classList.add("show");
+                }
+            }, 1500);
+        } else {
+            installBannerEl.style.display = "none";
+        }
+
+        closeInstallBtnEl.addEventListener("click", () => {
+            installBannerEl.classList.remove("show");
+        });
+
+        window.addEventListener("beforeinstallprompt", (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // إظهار البانر عند توفر التثبيت
+            installBannerEl.classList.add("show");
+        });
+
+        installBtnEl.addEventListener("click", async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installBannerEl.classList.remove("show");
+            } else {
+                // في حالة عدم وجود beforeinstallprompt (iOS أو متصفحات لا تدعم)
+                installBannerEl.classList.remove("show");
+                installInstructionsEl.classList.add("show");
+            }
+        });
+
+        closeInstructionsBtnEl.addEventListener("click", () => installInstructionsEl.classList.remove("show"));
+
+        window.addEventListener("load", () => {
+            displaySurahs("");
+            if (isInstalled) {
+                document.documentElement.requestFullscreen?.();
+            }
+        });
+    </script>
+</body>
+</html>

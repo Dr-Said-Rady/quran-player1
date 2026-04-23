@@ -756,5 +756,31 @@
             }
         });
     </script>
+    <script>
+// إعادة تحميل الصفحة إذا كانت فارغة (لمنع الشاشة البيضاء)
+(function() {
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    
+    if (isPWA && (document.body.innerText.trim() === '' || document.body.children.length < 2)) {
+        console.log('Empty page, reloading...');
+        window.location.reload();
+    }
+    
+    // التأكد من تحميل Font Awesome
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+        document.head.appendChild(link);
+    }
+})();
+
+// تسجيل Service Worker بعد تحميل الصفحة
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW error:', err));
+    });
+}
+</script>
 </body>
 </html>
